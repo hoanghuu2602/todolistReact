@@ -5,7 +5,7 @@ import Todo from '../Todo';
 import { addTodo } from '../../redux/actions';
 import { useState } from 'react';
 import ColumnGroup from 'antd/es/table/ColumnGroup';
-import { todoListSelector } from "../../redux/selectors"
+import {todosRemainingSelector } from "../../redux/selectors"
 
 
 export default function TodoList() {
@@ -28,8 +28,10 @@ const [priority,setPriority] =useState('Medium')
 
   }
 
-  const todolist = useSelector(todoListSelector)
-console.log('first todolist >>>:',todolist)
+  const todolist = useSelector(todosRemainingSelector)
+  console.log('first todolist>>>', todolist)
+  // const searchText = useSelector(searchSelector)
+  // console.log('searchText >>>:', searchText)
   return (
     <Row style={{ height: 'calc(100% - 40px)' }}>
       <Col span={24} style={{ height: 'calc(100% - 40px)', overflowY: 'auto' }}>
@@ -45,6 +47,7 @@ console.log('first todolist >>>:',todolist)
             onChange={(e) => setTodoName(e.target.value)}
           />
           <Select defaultValue={priority}
+            value={priority}
           onChange={(value)=>setPriority(value)}
           >
             <Select.Option value='High' label='High'>

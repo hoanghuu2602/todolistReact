@@ -29,6 +29,15 @@ const rootReducer = (state=initSatate,action) => {
                 ]
             }
     }
+        case "filters/searchFilter": {
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                   search: action.payload
+                }
+            }
+    }
         default: return state
     }
     
