@@ -2,11 +2,10 @@ import { Col, Row, Input, Button, Select, Tag } from 'antd';
 import { useDispatch,useSelector } from 'react-redux';
 import {v4 as uuidv4} from 'uuid'
 import Todo from '../Todo';
-import { addTodo } from '../../redux/actions';
 import { useState } from 'react';
 import ColumnGroup from 'antd/es/table/ColumnGroup';
 import {todosRemainingSelector } from "../../redux/selectors"
-
+import todoSlice  from "./todoSlice"
 
 export default function TodoList() {
 const [todoName,setTodoName] =useState('')
@@ -17,7 +16,7 @@ const [priority,setPriority] =useState('Medium')
 
   const handelAddButoon = (e) => {
     
-    dispatch(addTodo({
+    dispatch(todoSlice.actions.addTodo({
       id:uuidv4(),
       name: todoName,
       priority: priority,
