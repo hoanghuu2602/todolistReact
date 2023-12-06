@@ -11,6 +11,7 @@ import {todosRemainingSelector } from "../../redux/selectors"
 export default function TodoList() {
 const [todoName,setTodoName] =useState('')
 const [priority,setPriority] =useState('Medium')
+ 
 
   const dispatch = useDispatch();
 
@@ -36,7 +37,14 @@ const [priority,setPriority] =useState('Medium')
     <Row style={{ height: 'calc(100% - 40px)' }}>
       <Col span={24} style={{ height: 'calc(100% - 40px)', overflowY: 'auto' }}>
         {todolist.map((item,index) => (
-          <Todo key={`row-${index}`} name={item.name} prioriry={item.priority} />
+          <Todo
+            key={`row-${index}`}
+            id = {item.id}
+            name={item.name}
+            completed={item.completed}
+            prioriry={item.priority} 
+            
+            />
         ))}
        
       </Col>

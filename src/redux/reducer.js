@@ -1,49 +1,21 @@
-const initSatate = {
-    filters: {
-        search: '',
-        status: '',
-        priority:[]
-    },
-    todoList: [
-        {id: 1,name:"Lear Yago", completed:false,priority:"Medium"},
-        {id: 2,name:"Lear Redux", completed:true,priority:"High"},
-        {id: 3,name:"Lear jvascript", completed:false,priority:"Low"},
-    ]
-}
+import filtersReducer from "../components/Filters/FilterSlice";
+import todoListReducer from "../components/Todo/TodoSlice";
+import { combineReducers } from "redux";
 
-const rootReducer = (state=initSatate,action) => {
-    /**
-     * action:{
-     * type: ''
-     * payload: {id: 1,name:"Lear yog", completed:false,priority:"Medium"},
-     * }
-     */
+// const rootReducer = (state={},action) => {
+//     return {
+//         filters: filtersReducer(state.filters,action),
+//         todoList:todoListReducer(state.todoList,action)
+//     }
 
-    switch (action.type) {
-        case "todoList/addTodo": {
-            return {
-                ...state,
-                todoList: [
-                    ...state.todoList,
-                   action.payload
-                ]
-            }
-    }
-        case "filters/searchFilter": {
-            return {
-                ...state,
-                filters: {
-                    ...state.filters,
-                   search: action.payload
-                }
-            }
-    }
-        default: return state
-    }
-    
+// }
 
+//  combineReducers: Thay the dong code tren => ngan gon hon
 
+const rootReducer = combineReducers({
+    filters: filtersReducer,
+    todoList: todoListReducer
+})
 
-}
 
 export default rootReducer;
